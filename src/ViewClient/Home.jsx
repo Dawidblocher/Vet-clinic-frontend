@@ -5,8 +5,7 @@ import clsx from 'clsx';
 import avatarSrc from '../assets/img/avatar.png'
 import imgPet from '../assets/img/dog.jpg'
 import PetBlock from '../Components/PetBlock'
-import Title from '../Components/Title'
-import AddPet from '../View/AddPet'
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({

@@ -39,7 +39,7 @@ const AddPet = () => {
   
   const formik = useFormik({
     initialValues: {
-      name: 'test',
+      name: '',
       specs: '',
       breed: '',
       birthdate: selectedDate

@@ -21,7 +21,7 @@ export default function Doctors() {
         axios.get(`http://localhost:8080/doctor`)
         .then(res => {
             const doctors = res.data.map(item => createDoctor(item.firstName, item.id, item.lastName, item.nip, item.sallaryForHour, item.status))
-            setDoctors(doctors)
+            setDoctors(res)
             return doctors;
         })
       }, [])

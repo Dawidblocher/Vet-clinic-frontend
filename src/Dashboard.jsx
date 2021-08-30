@@ -16,13 +16,13 @@ import Grid from '@material-ui/core/Grid';
 
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
-
 import NotificationsIcon from '@material-ui/icons/Notifications';
-
-import Home from './View/Home';
-import AddPet from './View/AddPet';
+import Home from './ViewClient/Home';
+import AddPet from './ViewClient/AddPet';
 import {  Route, Switch } from "react-router-dom";
 import Sidebar from './Components/Sidebar'
+import MyPets from './ViewClient/MyPets';
+import Doctors from './ViewClient/Doctors';
 
 function Copyright() {
   return (
@@ -142,7 +142,9 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Switch>
                <Route exact path="/" component={Home} />
+               <Route path="/mypets" component={MyPets} />
                <Route path="/addpet" component={AddPet} />
+               <Route path="/doctors" component={Doctors} />
             </Switch>
           </Grid>
           <Box pt={4}>
