@@ -27,7 +27,7 @@ export const mainListItems = (
       button 
       key="mypet"
       component={Link} 
-      to="/"
+      to="/mypets"
     >
       <ListItemIcon>
         <ShoppingCartIcon />  
@@ -51,11 +51,16 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Wizyty</ListSubheader>
-    <ListItem button>
+    <ListItem 
+    button
+    key="addpet"
+    component={Link} 
+    to="/doctors"
+    >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Wizyty" />
+      <ListItemText primary="Lekarze" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -67,7 +72,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Znajdz Lekarza" />
+      <ListItemText primary="Moje wizyty" />
     </ListItem>
   </div>
 );
