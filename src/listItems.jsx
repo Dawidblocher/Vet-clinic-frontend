@@ -62,13 +62,20 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Lekarze" />
     </ListItem>
-    <ListItem button>
+    <ListItem 
+    button
+    
+    >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Umów wizytę" />
     </ListItem>
-    <ListItem button>
+    <ListItem 
+    button
+    key="myvisits"
+    component={Link} 
+    to="/myvisits">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>

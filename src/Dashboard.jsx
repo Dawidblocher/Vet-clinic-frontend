@@ -23,7 +23,7 @@ import {  Route, Switch } from "react-router-dom";
 import Sidebar from './Components/Sidebar'
 import MyPets from './ViewClient/MyPets';
 import Doctors from './ViewClient/Doctors';
-
+import MyVisits from './ViewClient/MyVisits';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -145,6 +145,7 @@ export default function Dashboard() {
                <Route path="/mypets" component={MyPets} />
                <Route path="/addpet" component={AddPet} />
                <Route path="/doctors" component={Doctors} />
+               <Route path="/myvisits" component={MyVisits } />
             </Switch>
           </Grid>
           <Box pt={4}>
