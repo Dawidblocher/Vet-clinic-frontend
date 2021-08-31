@@ -9,9 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 export default function Doctors() {
     const [doctors, setDoctors] = React.useState([]);

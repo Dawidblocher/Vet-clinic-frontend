@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Grid, Paper, Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
+import { Grid, Paper, Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 import clsx from 'clsx';
@@ -42,11 +42,6 @@ const PetBlock = ({xs, md, lg, imgPet, dog}) => {
         <Grid item xs={xs} md={md} lg={lg}>
             <Paper className={fixedHeightPaper}>
             <Avatar alt="Cindy Baker" src={imgPet} className={classes.large}/>                     
-                    {/* <Typography variant='h4'>Imie: Spencer</Typography>
-                    <Typography variant='p'>Gatunek: Pies</Typography>
-                    <Typography variant='p'>rasa: Bernardyn</Typography> 
-                    <Typography variant='p'>Data urodzenia: 2017-05-04</Typography>
-                    <Typography variant='p'>Imię właściciela: Adam Nowak</Typography>     */}
                     <TableContainer >
                     <Table className={classes.table} aria-label="caption table">
                         <TableHead>
