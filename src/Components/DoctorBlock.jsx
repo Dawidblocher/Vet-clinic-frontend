@@ -39,9 +39,9 @@ function createData(name, value) {
 const DoctorBlock = ({xs, md, lg, avatarSrc, doctor}) => {
     const classes = useStyles(doctor.status);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-    console.log(doctor)
+    
     const rows = [
-        createData('Cena za godzinę:', doctor.sallaryForHour + 'zł/h'),
+        createData('Cena za godzinę:', doctor.salaryForHour + 'zł/h'),
         createData('Nip:', doctor.nip),
         createData('Dostępność:', (doctor.status ? 'Dostępny' : "Niedostępny" ) ),
         

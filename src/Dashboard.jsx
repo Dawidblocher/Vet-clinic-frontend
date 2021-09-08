@@ -13,7 +13,8 @@ import Sidebar from './Components/Sidebar'
 import MyPets from './ViewClient/MyPets';
 import Doctors from './ViewClient/Doctors';
 import MyVisits from './ViewClient/MyVisits';
-
+import { Provider } from 'react-redux'
+import store from './store'
 
 function Copyright() {
   return (
@@ -48,6 +49,7 @@ const ComponentsStyled = styled(Container)`
 
 export default function Dashboard() {
   return (
+    <Provider store={store}>
     <Root>
       <CssBaseline />
       <Sidebar />
@@ -69,5 +71,6 @@ export default function Dashboard() {
         </ComponentsStyled>
       </MainStyled>
     </Root>
+    </Provider>
   );
 }

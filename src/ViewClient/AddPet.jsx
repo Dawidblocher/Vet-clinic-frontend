@@ -10,6 +10,8 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { useFormik } from 'formik';
+import { connect } from 'react-redux'
+import {addPet} from '../actions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddPet = () => {
+const AddPet = ({ owner, addPet}) => {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18'));
 
@@ -45,7 +47,16 @@ const AddPet = () => {
       birthdate: selectedDate
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const pet = {
+        id: 2,
+        name: values.name,
+        specs: values.specs,
+        breed: values.breed,
+        birthdate: values.birthdate.toISOString().substring(0, 10),
+        ownerId: owner.id
+      }
+      addPet(pet)
+      alert(JSON.stringify(pet, null, 2));
     },
   });
 
@@ -80,4 +91,10 @@ const AddPet = () => {
   )
 }
 
-export default AddPet
+const mapDispatchToProps = dispatch => ({
+  addPet: (pet) => dispatch(addPet(pet)),
+})
+
+const mapStateToProps = ({ owner }) => ({owner})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPet)

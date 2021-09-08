@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import avatarSrc from '../assets/img/avatar.png'
 import imgPet from '../assets/img/dog.jpg'
 import PetBlock from '../Components/PetBlock'
+import { connect } from 'react-redux';
 
 
 const drawerWidth = 240;
@@ -61,17 +62,11 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
   
-const dog = {
-    name: "Spencer",
-    specs:  'Pies',
-    breed: "Bernardyn",
-    birthdate: '2017-05-04',
-    owner: 'Adam Nowak'
-}
 
-const Home = () => {
+const Home = ({pets, owner}) => {
     const classes = useStyles();
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    
     return (
         <>  
             <Grid item xs={12} md={2} lg={2}>
@@ -81,16 +76,17 @@ const Home = () => {
             </Grid>
             <Grid item xs={12} md={10} lg={10}>
                 <Paper className={clsx(classes.paper, classes.fixedHeight, classes.avatarInfoBlock)}>                  
-                        <Typography variant='h4'>Adam Nowak</Typography>
-                        <Typography variant='p'>E-mail: adamnowak@gmail.com</Typography>
-                        <Typography variant='p'>Ilość zwierzaków: 3</Typography>                   
+                        <Typography variant='h4'>{owner.firstName} {owner.lastName}</Typography>
+                        <Typography variant='subtitle1'>E-mail: {owner.email}</Typography>
+                        <Typography variant='subtitle1'>Ilość zwierzaków: {pets.length}</Typography>                   
                 </Paper>
             </Grid>
             
-            <PetBlock xs={12} md={12} lg={12} imgPet={imgPet} dog={dog}/>
+            {pets.map(pet => (<PetBlock key={pet.id} xs={12} md={12} lg={12} imgPet={imgPet} dog={pet} />))}
             
         </>
     )
 }
+const mapStateToProps = ({ pets, owner }) => ({ pets, owner })
 
-export default Home;
+export default connect(mapStateToProps)(Home);
