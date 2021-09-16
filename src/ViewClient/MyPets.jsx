@@ -1,25 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import imgPet from '../assets/img/dog.jpg'
 import PetBlock from '../Components/PetBlock'
+import  styled  from 'styled-components'
+import { Typography
+} from '@material-ui/core';
+import { connect } from 'react-redux'
+import { getPets } from '../actions';
 
-const dog = {
-    name: "Spencer",
-    specs:  'Pies',
-    breed: "Bernardyn",
-    birthdate: '2017-05-04',
-    owner: 'Adam Nowak'
-}
+const StyledTypography = styled(Typography)`
+  margin-bottom: 35px;
+  text-align: center;
+`
 
-const MyPets = () => {
+class MyPets extends Component 
+{
+    componentDidMount(){
+        this.props.getPets()
+    }
     
+    render(){    
     return (
-        <>  
-            <PetBlock xs={12} md={12} lg={12} imgPet={imgPet} dog={dog}/>
-            <PetBlock xs={12} md={12} lg={12} imgPet={imgPet} dog={dog}/>
-            <PetBlock xs={12} md={12} lg={12} imgPet={imgPet} dog={dog}/>
-            <PetBlock xs={12} md={12} lg={12} imgPet={imgPet} dog={dog}/>
+        <>  <StyledTypography variant='h4'>Twoje zwierzaki</StyledTypography>
+             {this.props.pets.map(pet => <PetBlock key={pet.id} xs={12} md={12} lg={12} imgPet={imgPet} dog={pet} />)}
         </>
 )
+    }
 }
 
-export default MyPets
+const mapStateToProps = ({ pets }) => ({ pets })
+
+const mapDispatchToProps = dispatch =>({
+    getPets: () => dispatch(getPets())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPets)

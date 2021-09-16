@@ -16,8 +16,6 @@ class Doctors extends Component
         if(this.props.doctors){
             doctors = this.props.doctors.map(doctor => (<DoctorBlock key={doctor.id} xs={12} md={6} lg={4} doctor={doctor}/>))
         }
-         
-
         return(
             <>
                 {doctors}

@@ -1,7 +1,11 @@
 import {
-    ADD_PET,
-    FETCH_SUCCESS
+    ADD_PET_SUCCESS,
+    GET_PET_SUCCESS,
+    FETCH_SUCCESS,
+    FETCH_VISIT_SUCCESS,
+
 } from '../actions'
+
 
 const initialState = {
     owner: 
@@ -12,16 +16,7 @@ const initialState = {
             email: "random1@gmail.com"
         }
     ,
-    pets: [
-        {
-            id: 1,
-            birthdate: "2018-07-12",
-            breed: 'Bernardyn',
-            name: 'Spencer',
-            specs: 'Pies',
-            idOwner: 1
-        }
-    ],
+    pets: [],
     visits: [
         {
             id: 1,
@@ -35,6 +30,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type){
+        case FETCH_VISIT_SUCCESS:
+            
+            return {
+                ...state,
+                visits: action.data
+            }
         case FETCH_SUCCESS:
             
             return {
@@ -42,14 +43,23 @@ const rootReducer = (state = initialState, action) => {
                 doctors: action.data
             }
         // eslint-disable-next-line no-duplicate-case
-        case ADD_PET:
+        case ADD_PET_SUCCESS:
+            
             return {
                 ...state,
                 pets: [
                     ...state.pets,
-                    action.payload
+                    action.data
                 ]
             }
+            case GET_PET_SUCCESS:
+                console.log(action.data)
+                return {
+                    ...state,
+                    pets: action.data           
+                }
+                
+
             
         default:
             return state

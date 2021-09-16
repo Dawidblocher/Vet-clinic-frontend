@@ -1,9 +1,8 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
 import 'date-fns';
-import {Grid, Paper, Button} from '@material-ui/core';
+import {Grid, Paper, Button, Typography
+} from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -12,32 +11,34 @@ import {
 import { useFormik } from 'formik';
 import { connect } from 'react-redux'
 import {addPet} from '../actions';
+import  styled  from 'styled-components'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& .MuiTextField-root': { 
-        margin: theme.spacing(1),
-        width: 'calc(100% - 15px)',
-      },
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    gridCenter: {
-      margin: '0 auto'
-    },
-    paperColumn: {
-      display: 'flex',
-      flexDirection: 'column'
-    }
-}));
+const StyledTypography = styled(Typography)`
+  margin-bottom: 35px;
+  text-align: center;
+`
+
+const StyledGrid = styled(Grid)`
+  margin: 0 auto !important;
+  justify-content: center;
+
+`
+
+const StyledPaper = styled(Paper)`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+`
+
+const StyledForm = styled.form`
+ display: flex;
+  flex-direction: column;
+  padding: 10px;
+`
 
 const AddPet = ({ owner, addPet}) => {
-  const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18'));
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  }; 
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
   
   const formik = useFormik({
     initialValues: {
@@ -47,23 +48,34 @@ const AddPet = ({ owner, addPet}) => {
       birthdate: selectedDate
     },
     onSubmit: (values) => {
+    
       const pet = {
-        id: 2,
         name: values.name,
         specs: values.specs,
         breed: values.breed,
-        birthdate: values.birthdate.toISOString().substring(0, 10),
+        birthDate: `${appendLeadingZeroes(selectedDate.getDate())}-${appendLeadingZeroes(selectedDate.getMonth() + 1)}-${selectedDate.getFullYear()}`,
         ownerId: owner.id
       }
-      addPet(pet)
-      alert(JSON.stringify(pet, null, 2));
+      console.log(pet.birthDate)
+      addPet(pet) 
     },
   });
 
+  function appendLeadingZeroes(n){
+    if(n <= 9){
+      return "0" + n;
+    }
+    return n
+  }
+  
+
+
   return (
-    <Grid className={classes.gridCenter} item xs={12} md={6} lg={6} >
-      <Paper className={classes.paperColumn}>         
-        <form className={classes.root} onSubmit={formik.handleSubmit}>
+    <StyledGrid item xs={12} md={6} lg={6} >
+      <StyledTypography  variant="h4">Dodaj nowego zwierzaka</StyledTypography>
+      <StyledPaper>         
+        
+        <StyledForm  onSubmit={formik.handleSubmit}>
           <TextField id="name" name="name" label="Imię zwierzaka" type="text" variant="outlined" value={formik.values.name} onChange={formik.handleChange}/>
             <TextField id="specs" name="specs" label="Gatunek" type="text" variant="outlined" onChange={formik.handleChange}/>
             <TextField id="breed" name="breed" label="Rasa" type="text" variant="outlined" onChange={formik.handleChange} />
@@ -76,7 +88,7 @@ const AddPet = ({ owner, addPet}) => {
               name="birthdate"
               label="Data urodzenia"
               value={selectedDate}
-              onChange={handleDateChange}
+              onChange={setSelectedDate}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -84,9 +96,9 @@ const AddPet = ({ owner, addPet}) => {
           <Button color="primary" variant="contained" fullWidth type="submit">
               Submit
             </Button>
-        </form>
-      </Paper>
-    </Grid>
+        </StyledForm>
+      </StyledPaper>
+    </StyledGrid>
     
   )
 }
