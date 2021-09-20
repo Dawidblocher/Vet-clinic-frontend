@@ -36,6 +36,10 @@ const StyledForm = styled.form`
   padding: 10px;
 `
 
+const StyledTextField = styled(TextField)`
+  margin-bottom: 15px !important;
+`
+
 const AddPet = ({ owner, addPet}) => {
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -76,14 +80,14 @@ const AddPet = ({ owner, addPet}) => {
       <StyledPaper>         
         
         <StyledForm  onSubmit={formik.handleSubmit}>
-          <TextField id="name" name="name" label="Imię zwierzaka" type="text" variant="outlined" value={formik.values.name} onChange={formik.handleChange}/>
-            <TextField id="specs" name="specs" label="Gatunek" type="text" variant="outlined" onChange={formik.handleChange}/>
-            <TextField id="breed" name="breed" label="Rasa" type="text" variant="outlined" onChange={formik.handleChange} />
+          <StyledTextField id="name" name="name" label="Imię zwierzaka" type="text" variant="outlined" value={formik.values.name} onChange={formik.handleChange}/>
+            <StyledTextField id="specs" name="specs" label="Gatunek" type="text" variant="outlined" onChange={formik.handleChange}/>
+            <StyledTextField id="breed" name="breed" label="Rasa" type="text" variant="outlined" onChange={formik.handleChange} />
             <MuiPickersUtilsProvider utils={DateFnsUtils}><KeyboardDatePicker
               disableToolbar
               variant="inline"
               format="MM/dd/yyyy"
-              margin="normal"
+              margin="normal" 
               id="birthdate"
               name="birthdate"
               label="Data urodzenia"

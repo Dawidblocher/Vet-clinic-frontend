@@ -8,8 +8,51 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../listItems';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import logo from '../assets/img/vet-logo.png'
+import styled from 'styled-components'
 
 const drawerWidth = 240;
+
+const StyledLogo = styled.img`
+  max-width: 120px;
+  height: auto;
+`
+
+const StyledDrawer = styled(Drawer)`
+    width: 300px;
+    position: relative;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    white-space: nowrap;
+
+    & .MuiDrawer-paper{
+      position: static;
+      width: 100%;
+      background: #338F6C;
+      border-right: 0;
+      padding: 30px;
+    }
+`
+
+const StyledLogoWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 80px;
+`
+
+const StyledAppBar = styled(AppBar)`
+    & .MuiToolbar-regular{
+      top: 0;
+    left: auto;
+    right: 0;
+    position: absolute;
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    background: #338F6C;
+    padding: 15px 15px;
+    }
+    
+`
+
 
 const useStyles = makeStyles((theme) => ({ 
     toolbar: {
@@ -82,45 +125,30 @@ const Sidebar = () => {
     };
 
     return (<>
-        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
+        <StyledAppBar position="absolute" >
+        <Toolbar className={classes.toolbar}> 
+          
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
 
-        <Drawer
+        <StyledDrawer
             variant="permanent"
-            classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-            }}
+            
             open={open}
         >
-            <div className={classes.toolbarIcon}>
-                <IconButton onClick={handleDrawerClose}>
-                    <ChevronLeftIcon />
-                </IconButton>
-            </div>
+            <StyledLogoWrapper >
+               <StyledLogo src={logo} alt='logo'/>
+            </StyledLogoWrapper>
             <Divider />
                 <List>{mainListItems}</List>
             <Divider />
             <List>{secondaryListItems}</List>
-        </Drawer>
+        </StyledDrawer>
     </>)
 }
 

@@ -15,6 +15,8 @@ import Doctors from './ViewClient/Doctors';
 import MyVisits from './ViewClient/MyVisits';
 import { Provider } from 'react-redux'
 import store from './store'
+import AddVisits from './ViewClient/AddVisits/AddVisits';
+
 
 function Copyright() {
   return (
@@ -33,13 +35,21 @@ const Root = styled.div`
   display: flex;
 `
 const AppBarSpacer = styled.div`
-  min-height: 64px;
+  min-height: 78px;
 `
 
 const MainStyled = styled.main`
   flex-grow: 1;
   height: 100vh;
+  background: #338F6C;
   overflow: 'auto';
+
+  & .MuiContainer-root{
+    border-radius: 40px 0 0 0;
+    background: #fff;
+    height: calc(100% - 78px);
+    max-width: 100%;
+  }
 `
 
 const ComponentsStyled = styled(Container)`
@@ -63,6 +73,7 @@ export default function Dashboard() {
                <Route path="/addpet" component={AddPet} />
                <Route path="/doctors" component={Doctors} />
                <Route path="/myvisits" component={MyVisits } />
+               <Route path="/addvisits" component={AddVisits } />
             </Switch>
           </Grid>
           <Box pt={4}>

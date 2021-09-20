@@ -36,7 +36,7 @@ const PetBlock = ({xs, md, lg, imgPet, dog}) => {
         createData('Gatuek:', dog.specs),
         createData('Rasa:', dog.breed),
         createData('Data urodzenia:', dog.birthDate),
-        createData('Imię właściciela:', dog.owner.id),
+       
       ];
     return (
         <Grid item xs={xs} md={md} lg={lg}>
